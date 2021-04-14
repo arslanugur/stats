@@ -1,0 +1,89 @@
+3.1 Simple Linear Regression
+
+Why is linear regression important to understand?
+Linear regression is very extensible and can be used to capture nonlinear effects
+Simple methods can outperform more complex ones if the data are noisy
+Understanding simpler methods sheds light on more complex ones
+The linear model (and every other model) is hardly ever true, but it is an important piece in many more complex methods.
+
+
+You may want to reread the paragraph on confidence intervals on page 66 of the textbook before trying this queston (the distinctions are subtle).
+Which of the following are true statements? Select all that apply:
+---> A 95% confidence interval is a random interval that contains the true parameter 95% of the time
+---> The true parameter (unknown to me) is 0.5. If I sample data and construct a 95% confidence interval, the interval will contain 0.5 95% of the time.
+Confidence intervals are a "frequentist" concept: the interval, and not the true parameter, is considered random.
+
+##########################################################################################
+
+3.2 Hypothesis Testing and Confidence Intervals
+
+We run a linear regression and the slope estimate is 0.5 with estimated standard error of 0.2. 
+What is the largest value of b for which we would NOT reject the null hypothesis that β_1=b? 
+(assume normal approximation to t distribution, 
+and that we are using the 5% significance level for a two-sided test; need two significant digits of accuracy)
+---> 0.892
+The 95% confidence interval hatβ_1±1.96 S.E.(β_1) contains all parameter values that would not be rejected at a 5% significance level.
+
+Which of the following indicates a fairly strong relationship between X and Y?
+---> R^2 = 0.9
+
+##########################################################################################
+
+3.3 Multiple Linear Regression
+
+Suppose we are interested in learning about a relationship between X_1 and Y, which we would ideally like to interpret as causal.
+The estimate hatβ_1 in a linear regression that controls for many variables... 
+(that is, a regression with many predictors in addition to X_1) 
+is usually a more reliable measure of a causal relationship than hatβ_1 from a univariate regression on X_1.
+---> False
+
+##########################################################################################
+
+3.4 Some important questions
+
+According to the balance vs ethnicity model, what is the predicted balance for an Asian in the data set? (within 0.01 accuracy)
+---> 512.31
+For an Asian, the predicted balance is the intercept plus the Asian ethnicity effect.
+
+What is the predicted balance for an African American? (within .01 accuracy)
+---> 531
+For an African American, the predicted balance is just the intercept.
+Note that despite the differing predictions, this difference is not statistically significant.
+
+##########################################################################################
+
+3.5 Extensions of the linear model
+
+According to the model for sales vs TV interacted with radio, 
+what is the effect of an additional $1 of radio advertising if TV=$50? (with 4 decimal accuracy)
+---> .0839
+
+What if TV=$250? (with 4 decimal accuracy)
+---> .3039
+The effect of an additional unit of radio is .0289 plus .0011 times TV.
+
+##########################################################################################
+
+3.R Linear Regression in R
+
+What is the difference between lm(y ~ x*z) and lm(y ~ I(x*z)), when x and z are both numeric variables?
+---> The first one includes an interaction term between x and z, whereas the second uses the product of x and z as a predictor in the model. correct
+---> The second includes only an interaction term for x and z, while the first includes both interaction effects and main effects.
+An interaction term between a numeric x and z is just the product of x and z. 
+The difference is that in the first model, lm processes the "*" operator between variables and automatically includes main effects, 
+whereas in the latter model, the expression inside the I() function is not parsed as a part of the formula, 
+but rather is simply evaluated.
+
+##########################################################################################
+
+Chapter 3 Quiz
+---> In the balance vs. income * student model plotted on slide 44, the estimate of beta3 is negative. TRUE
+We can see that the estimate of beta3 is negative because the slope of the student line is smaller than the slope of the non-student line. 
+That is, being a student diminishes the effect of income on balance.
+The linear model is almost always wrong; however, it is often still useful.
+The F statistic tests the null hypothesis that none of the predictors has any effect. 
+Rejecting that null means concluding that *some* predictor has an effect, not that *all* of them do.
+Positive correlation only means that the univariate regression has a positive correlation. See slide 20 for a counterexample.
+
+
+
