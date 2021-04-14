@@ -1,0 +1,96 @@
+2.1 Introduction to Regression Models
+
+In the expression Sales ≈ f(TV, Radio, Newspaper), 
+"Sales" is the: ---> Response
+
+The variable which you are trying to model is called the response or outcome. 
+The other variables are called features, predictors, or independent variables. 
+Together, the collection of features and response values that you will use for fitting form your training data.
+
+###########################################################################################
+
+2.2 Dimensionality and Structured Models
+
+A hypercube with side length 1 in d dimensions is defined 
+to be the set of points (x_1, x_2, ..., x_d) such that 0 \le x_j \le 1 for all j = 1, 2, ..., d. 
+The boundary of the hypercube is defined to be the set of all points 
+such that there exists a j for which 0 \le x_j \le .05 or .95 \le x_j \le 1 
+(namely, the boundary is the set of all points that have at least one dimension in the most extreme 10% of possible values). 
+What proportion of the points in a hypercube of dimension 50 are in the boundary? 
+(hint: you may want to calculate the volume of the non-boundary region)
+
+---
+
+Please give your answer as a value between 0 and 1 with 3 significant digits. 
+If you think the answer is 50.52%, you should say 0.505: ---> 0.995
+
+We know that the volume of the whole hypercube is 1^50 = 1. 
+The volume of the interior of the hypercube is 0.9^50 = 0.005. 
+Thus, the volume of the boundary is 1-0.005 = 0.995.
+
+###########################################################################################
+
+2.3 Model Selection and Bias-Variance Tradeoff
+
+A fitted model with more predictors will necessarily have a lower Training Set Error than a model with fewer predictors.
+---> False
+
+False. While we typically expect a model with more predictors to have lower Training Set Error, it is not necessarily the case. 
+An extreme counterexample would be a case where you have a model with one predictor that is always equal to the response, 
+compared to a model with many predictors that are random.
+
+---
+
+While doing a homework assignment, you fit a Linear Model to your data set. 
+You are thinking about changing the Linear Model to a Quadratic one. 
+Which of the following is most likely true:
+---> Using the Quadratic Model will decrease the Bias of your model.
+
+Introducing the quadratic term will make your model more complicated. 
+More complicated models typically have lower bias at the cost of higher variance. 
+This has an unclear effect on Reducible Error (could go up or down) and no effect on Irreducible Error.
+
+###########################################################################################
+
+2.4 Classification
+
+Look at the graph given on page 30 of the Chapter 2 lecture slides. 
+Which of the following is most likely true of what would happen to the Test Error curve as we move 1/K further above 1?
+---> It does not make sense to have  1/K>1
+
+Since K is the number of neighbors, the value of K must be a Natural Number. This means that 1/K≤1.
+
+###########################################################################################
+
+2.R Introduction to R
+
+You are doing an analysis in R and need to use the 'summary()' function, but you are not exactly sure how it works. 
+Which of the following commands should you run?
+(There is more than one correct answer, so any one these will earn the point).
+---> help(summary) correct
+---> ?summary correct
+---> ?summary()
+
+Any of the above commands work except for 'man(summary)'. 
+Make sure you always read the documentation so you know what functions do when you use them!
+
+###########################################################################################
+
+Chapter 2 Quiz
+
+For each of the following parts, 
+indicate whether we would generally expect the performance of a flexible statistical learning method to be better or worse than an inflexible model.
+
+The sample size n is extremely large, and the number of predictors p is small: ---> Flexible is better
+A flexible model will allow us to take full advantage of our large sample size.
+
+The number of predictors p is extremely large, and the sample size n is small: ---> Flexible is worse
+The flexible model will cause overfitting due to our small sample size.
+
+The relationship between the predictors and response is highly non-linear: ---> Flexible is better
+A flexible model will be necessary to find the nonlinear effect.
+
+The variance of the error terms, i.e. sigma^2 =Var(ϵ), is extremely high: ---> Flexible is worse
+A flexible model will cause us to fit too much of the noise in the problem.
+
+
