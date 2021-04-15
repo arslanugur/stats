@@ -1,0 +1,94 @@
+5.1 Cross-validation
+
+When we fit a model to data, which is typically larger?
+---> Test Error
+Training error almost always underestimates test error, sometimes dramatically
+
+What are reasons why test error could be LESS than training error?
+---> By chance, the test set has easier cases than the training set.
+---  The model is highly complex, so training error systematically overestimates test error
+---  The model is not very complex, so training error systematically overestimates test error
+Training error usually UNDERestimates test error when the model is very complex(compared to the training set size), 
+and is a pretty good estimate when the model is not very complex.
+However, it's always possible we just get too few hard-to-predict points in the test set, or too many in the training set.
+
+##########################################################################################
+
+5.2 K-fold Cross-Validation
+
+Suppose we want to use cross-validation to estimate the error of the following procedure:
+Step 1: Find the k variables most correlated with y
+Step 2: Fit a linear regression using those variables as predictors
+We will estimate the error for each k from 1 to p, and then choose the best k.
+
+True ---> a correct cross-validation procedure will possibly choose a different set of k variables for every fold.
+True: we need to replicate our entire procedure for each training/validation split.
+That means the decision about which k variables are the best must be made on the basis of the training set alone.
+In general, different training sets will disagree on which are the best k variables.
+
+##########################################################################################
+
+5.3 Cross-Validation: the wrong and right way
+
+Suppose that we perform forward stepwise regression and use cross-validation to choose the best model size.
+Using the full data set to choose the sequence of models is the WRONG way to do cross-validation.
+(we need to redo the model selection step within each training fold).
+If we do cross-validation the WRONG way, which of the following is true?
+---> The selected model will probably be too complex
+Using the full data set to choose the best variables means that we do not pay as much price as we should for overfitting
+(since we are fitting to the test and training set simultaneously).
+This will lead us to underestimate test error for every model size, but the bias is worst for the most complex models.
+Therefore, we are likely to choose a model that is more complex than the optimal model.
+
+##########################################################################################
+
+5.4 The Bootstrap
+
+One way of carrying out the bootstrap is to average equally over all possible bootstrap samples from the original data set 
+(where two bootstrap data sets are different if they have the same data points but in different order). 
+Unlike the usual implementation of the bootstrap, this method has the advantage of not introducing extra noise due to resampling randomly. 
+(You can use "^" to denote power, as in "n^2")
+To carry out this implementation on a data set with n data points, how many bootstrap data sets would we need to average over?
+---> n^n
+Completely removing the bootstrap resampling noise is usually not worth incurring the extreme computational cost. 
+If B is large, but still less than n^n, random resampling gives a good Monte Carlo estimate of the idealized bootstrap estimate for all n^n data sets.
+
+##########################################################################################
+
+5.5 More on the Bootstrap
+
+If we have n data points, what is the probability that a given data point does not appear in a bootstrap sample?
+---> (1-1/n)^n
+To construct a bootstrap sample, we repeatedly draw a single data point from a sample of size n, n times.
+Any given data point has a 1-1/n chance of not being selected in each draw. 
+Hence, the chance of not being selected in any of the n draws is (1-1/n)^n
+
+##########################################################################################
+
+5.R Resampling in R
+
+Download the file 5.R.RData and load it into R using load("5.R.RData"). 
+Consider the linear regression model of y on X_1 and X_2. What is the standard error for β_1?
+--->0.02593
+Use summary(lm(y~.,data=Xy))
+
+Next, plot the data using matplot(Xy,type="l"). Which of the following do you think is most likely given what you see?
+---> Our estimate of  s.e.(hatβ_1)  is too low.
+There is very strong autocorrelation between consecutive rows of the data matrix. 
+Roughly speaking, we have about 10-20 repeats of every data point, 
+so the sample size is in effect much smaller than the number of rows (1000 in this case).
+
+Now, use the (standard) bootstrap to estimate s.e.(hatβ_1). To within 10%, what do you get?
+---> 0.0274
+When we do the i.i.d. bootstrap, we are relying on the original sampling having been i.i.d. 
+That is the same assumption that screwed us up when we used lm.
+
+Finally, use the block bootstrap to estimate s.e.(hatβ_1). Use blocks of 100 contiguous observations, 
+and resample ten whole blocks with replacement then paste them together to construct each bootstrap time series. 
+For example, one of your bootstrap resamples could be:
+  new.rows = c(101:200, 401:500, 101:200, 901:1000, 301:400, 1:100, 1:100, 801:900, 201:300, 701:800)
+  new.Xy = Xy[new.rows, ]
+To within 10%, what do you get?
+---> 0.2
+The block bootstrap does a better job of mimicking the original sampling procedure, because it preserves the autocorrelation.
+
