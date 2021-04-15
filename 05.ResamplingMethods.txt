@@ -92,3 +92,27 @@ To within 10%, what do you get?
 ---> 0.2
 The block bootstrap does a better job of mimicking the original sampling procedure, because it preserves the autocorrelation.
 
+##########################################################################################
+
+Chapter 5 Quiz
+
+If we use ten-fold cross-validation as a means of model selection, the cross-validation estimate of test error is:
+---> potentially any of the below
+     biased upward
+     biased downward
+     unbiased
+There are competing biases: on one hand, the cross-validated estimate is based on models trained on smaller training sets than the full model, which means we will tend to overestimate test error for the full model.
+On the other hand, cross-validation gives a noisy estimate of test error for each candidate model, and we select the model with the best estimate. 
+This means we are more likely to choose a model whose estimate is smaller than its true test error rate, hence, we may underestimate test error. In any given case, either source of bias may dominate the other.
+
+Why can't we use the standard bootstrap for some time series data?
+---> The data points in most time series aren't i.i.d.
+---> The standard bootstrap doesn't accurately mimic the real-world data-generating mechanism
+The bootstrap always involves using some points more than once in each resample, 
+but that doesn't inherently make it incorrect (unless we are trying to gauge prediction error). 
+The real problem in this case is that the usual bootstrap algorithm samples i.i.d., 
+so there is no serial autocorrelation (unlike what is observed in most time series). 
+This makes the set of resampled time series very very different from the sorts of time series we actually get in the real world.
+
+
+
