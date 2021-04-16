@@ -1,0 +1,158 @@
+6.1 Introduction and Best-Subset Selection
+
+Which of the following modeling techniques performs Feature Selection?
+---> Linear Regression with Forward Selection
+Forward Selection chooses a subset of the predictor variables for the final model. 
+The other three methods end up using all of the predictor variables: Linear Discriminant Analysis, Least Squares, Support Vector Machines
+
+##########################################################################################
+
+6.2 Stepwise Selection
+
+We perform best subset and forward stepwise selection on a single dataset. 
+For both approaches, we obtain p + 1 models, containing 0,1,2,…,p predictors.
+Which of the two models with k predictors is guaranteed to have training RSS no larger than the other model?
+---> Best Subset
+
+Which of the two models with k predictors has the smallest test RSS?
+---> Not enough information is given to know
+We know that Best Subset selection will always have the lowest training RSS (that is how it is defined). 
+That said, we don't know which model will perform better on a test set.
+
+##########################################################################################
+
+6.3 Backward stepwise selection
+
+You are trying to fit a model and are given p=30 predictor variables to choose from. 
+Ultimately, you want your model to be interpretable, so you decide to use Best Subset Selection.
+How many different models will you end up considering?: ---> 2^30
+Each predictor can either be included or not included in the model. 
+That means that for each of the 30 variables there are two options. Thus, there are 2^30 potential models.
+Note: Don’t ever try to fit that many models! 
+It is too many and that is why Best Subset Selection is rarely used in practice for say p=10 or larger.
+
+How many would you fit using Forward Selection?: ---> 1 + 30 * (30 + 1) / 2 = 466
+For Forward Selection, you fit (p - k) models for each k = 0, ...p-1 
+The expression for the total number of models fit is on pg 15 of the notes: p ( p + 1 ) / 2 + 1
+
+##########################################################################################
+
+6.4 Estimating test error
+
+You are fitting a linear model to data assumed to have Gaussian errors. 
+The model has up to p = 5 predictors and n = 100 observations. 
+Which of the following is most likely true of the relationship 
+between C_p and AIC in terms of using the statistic to select a number of predictors to include?
+---> C_p  will select the same model as  AIC
+For linear models with Gaussian errors, C_p and AIC and equivalent.
+
+##########################################################################################
+
+6.5 Validation and cross-validation
+
+You are doing a simulation in order to compare the effect of using Cross-Validation or a Validation set. 
+For each iteration of the simulation, 
+you generate new data and then use both Cross-Validation and a Validation set in order to determine the optimal number of predictors. 
+Which of the following is most likely?
+---> The Validation set method will result in a higher variance of optimal number of predictors
+Cross-Validation is similar to doing a Validation set multiple times and then averaging the answers. 
+As such, we expect it to have lower variance than the Validation set method. 
+This is why Cross-Validation is appealing (especially for small n).
+
+##########################################################################################
+
+6.6 Shrinkage methods and ridge regression
+
+√(∑^(p_j) = 1^(β^2_j)) is equivalent to: --->  ∥β∥2
+The expression is the L2 norm of β.
+
+You perform ridge regression on a problem where your third predictor, x3, is measured in dollars. 
+You decide to refit the model after changing x3 to be measured in cents. 
+Which of the following is true?:
+---> hatβ_3 and haty  will both change.
+The units of the predictors affects the L2 penalty in ridge regression, and hence hatβ_3 and haty will both change
+
+##########################################################################################
+
+6.7 The Lasso
+
+Which of the following is NOT a benefit of the sparsity imposed by the Lasso?
+---  Sparse models are generally more easy to interperet
+---  The Lasso does variable selection by default
+---> Using the Lasso penalty helps to decrease the bias of the fits
+---  Using the Lasso penalty helps to decrease the variance of the fits
+Restricting ourselves to simpler models by including a Lasso penalty will generally decrease the variance of the fits at the cost of higher bias.
+
+
+##########################################################################################
+
+6.8 Tuning parameter selection
+
+Which of the following would be the worst metric to use to select λ in the Lasso?
+---  Cross-Validated error
+---  Validation set error
+---> RSS
+RSS would be the worst metric to use because it will cause us to always select the most complicated model.
+Any of the other metrics could be used, although Cross-Validated error is probably most common.
+
+##########################################################################################
+
+6.9 Dimension Reduction Methods
+
+We compute the principal components of our p predictor variables. 
+The RSS in a simple linear regression of Y onto the largest principal component...
+...will always be no larger than the RSS in a simple regression of Y onto the second largest principal component. 
+True or False? (You may want to watch 6.10 as well before answering - sorry!) ---> False
+Principal components are found independently of Y, so we can't know the relationship with Y a priori.
+
+##########################################################################################
+
+6.10 Principal Components Regression and Partial Least Squares
+
+You are working on a regression problem with many variables, 
+so you decide to do Principal Components Analysis first and then fit the regression to the first 2 principal components.
+Which of the following would you expect to happen?:
+---> Variance of fitted values will decrease relative to the full least squares model
+While some forms of dimensional reduction will cause the first or fourth to occur, that is not the case with PCA.
+When using dimensional reduction we restrict ourselves to simpler models.
+Thus, we expect bias to increase and variance to decrease.
+
+##########################################################################################
+
+6.R. Model Selection in R
+
+One of the functions in the glmnet package is cv.glmnet(). 
+This function, like many functions in R, will return a list object that contains various outputs of interest. 
+What is the name of the component that contains a vector of the mean cross-validated errors?
+---> cvm
+To check the return value of a function, use ?functionname and then scroll down to the Value heading.
+
+##########################################################################################
+
+Chapter 6 Quiz
+
+Suppose we estimate the regression coefficients in a linear regression model by minimizing
+∑(^n , _i=1) = (y_i − β_0 − ∑(^p , _j=1)β_jxij)^2 + λ∑(^p , _j=1)β(^2, _j)
+for a particular value of λ. For each of the following, select the correct answer:
+---> As we increase λ from 0, the training RSS will: Steadily Increase
+Increasing λ will force us to fit simpler models.
+This means that training RSS will steadily increase because we are less able to fit the training data exactly.
+
+---> As we increase λ from 0, the test RSS will: Decrease initually, and then eventually start increasing in a U shape
+At first, we expect test RSS to improve because we are not overfitting our training data anymore. 
+Eventually, we will start fitting models that are too simple to capture the true effects and test RSS will go up.
+
+---> As we increase λ from 0, the variance will: Steadily Decrease
+Increasing λ will cause us to fit simpler models, which reduces the variance of the fits.
+
+---> As we increase λ from 0, the (squared) bias will: Steadily Increase
+Increasing λ will cause us to fit simpler models, which have larger squared bias.
+
+---> As we increase λ from 0, the irreducible error will: Remain constant
+Increasing λ will have no effect on irreducible error. 
+By definition, irreducible error is an aspect of the problem and has nothing to do with a particular model being fit.
+
+
+
+
+
