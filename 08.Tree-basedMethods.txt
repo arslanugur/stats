@@ -1,0 +1,89 @@
+8.1 Tree-based methods
+
+Using the decision tree on page 5 of the notes, 
+what would you predict for the log salary of a player who has played for 4 years and has 150 hits?:
+---> 5.11
+The player has played less than 4.5 years, so at the first split we follow the left branch. 
+There are no further splits, so we predict 5.11.
+
+##########################################################################################
+
+8.2 More details on Trees
+
+Imagine that you are doing cost complexity pruning as defined on page 18 of the notes. 
+You fit two trees to the same data: T_1 is fit at α=1 and T_2 is fit at α=2. Which of the following is true?
+---> T_1  will have at least as many nodes as  T_2
+A higher value of alpha corresponds to a higher penalty on the complexity of the tree.
+This means that T_1 will have at least as many nodes as T_2.
+
+##########################################################################################
+
+8.3 Classification trees
+
+You have a bag of marbles with 64 red marbles and 36 blue marbles.
+What is the value of the Gini Index for that bag? Give your answer to the nearest hundredth:
+---> .4608
+Using the formula from pgs 25-26:
+Gini Index = .64*(1-.64) + .36*(1-.36) = .4608
+
+What is the value of the Cross-Entropy? Give your answer to the nearest hundredth (using log base e, as in R):
+---> .653
+Cross Entropy = -.64*ln(.64) - .36*ln(.36) = .6534
+
+##########################################################################################
+
+8.4 Bagging and Random forests
+
+Suppose we produce ten bootstrap samples from a data set containing red and green classes. 
+We then apply a classification tree to each bootstrap sample and, for a specific value of X, produce 10 estimates of P(Class is Red|X):
+      0.1,0.15,0.2,0.2,0.55,0.6,0.6,0.65,0.7, and 0.75
+There are two common ways to combine these results together into a single class prediction. 
+One is the majority vote approach discussed in the notes. The second approach is to classify based on the average probability.
+What is the final classification under the majority vote method?: ---> red
+6 of the 10 probabilities are greater than 1/2, so the majority vote method will select red.
+
+What is the final classification under the average probability method?: ---> green
+The average of the probabilities is 0.45, so the average probability method will select green.
+
+##########################################################################################
+
+8.5 Boosting
+
+In order to perform Boosting, we need to select 3 parameters: number of samples B, tree depth d, and step size λ.
+How many parameters do we need to select in order to perform Random Forests?: ---> 2
+To perform Random Forests we need to select 2 parameters: number of samples B and m= number of variables sampled at each split.
+
+##########################################################################################
+
+8.R Tree-Based Methods in R
+
+You are trying to reproduce the results of the R labs, so you run the following command in R:
+> library(tree)
+As a response, you see the following error message:
+Error in library(tree) : there is no package called ‘tree’
+What went wrong? ---> The tree package is not installed on your computer
+In order to install the package, run install.packages() or use the package installer through the R menu bar.
+
+##########################################################################################
+
+Chapter 8 Quiz
+
+The tree building algorithm given on pg 13 is described as a Greedy Algorithm. 
+Which of the following is also an example of a Greedy Algorithm?: ---> Forward Stepwise Selection
+Forward Stepwise Selection is a Greedy Algorithm because at each step it selects the variable that improves the current model the most.
+There is no guarantee that the final result will be optimal.
+
+Examine the plot on pg 23. Assume that we wanted to select a model using the one-standard-error rule on the Cross-Validated error. 
+What tree size would end up being selected?: ---> 2
+Cross-Validated error is minimized at tree size 3.
+The error for Tree size 2 is within one standard error of the minimum, but the error for tree size 1 is not.
+Thus, the one-standard-error rule selects tree size 2.
+
+Suppose I have two qualitative predictor variables, each with three levels, and a quantitative response.
+I am considering fitting either a tree or an additive model.
+For the additive model, I will use a piecewise-constant function for each variable, with a separate constant for each level.
+Which model is capable of fitting a richer class of functions: ---> Tree
+Although each split of the tree makes two partitions, it can fit interactions, while the additive model cannot.
+With enough splits the tree can fit a full 3x3 regression surface.
+
+
