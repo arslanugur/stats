@@ -1,0 +1,13 @@
+7.1 Polynomials and Step Functions
+
+Which of the following can we add to linear models to capture nonlinear effects?
+---> Spline terms
+---> Polynomial terms
+---> Interactions
+---  Arbitrary linear combinations of the variables
+---> Step functions
+If we add any of these terms to our linear model, the model will be able to capture new nonlinear effects. 
+The only exception is linear combinations of variables already in the model:
+Any linear combination of those variables is already included in the model.
+
+##########################################################################################
