@@ -1,0 +1,81 @@
+7.1 Polynomials and Step Functions
+
+Which of the following can we add to linear models to capture nonlinear effects?
+---> Spline terms
+---> Polynomial terms
+---> Interactions
+---  Arbitrary linear combinations of the variables
+---> Step functions
+If we add any of these terms to our linear model, the model will be able to capture new nonlinear effects. 
+The only exception is linear combinations of variables already in the model:
+Any linear combination of those variables is already included in the model.
+
+##########################################################################################
+
+7.2 Piecewise-Polynomials and Splines
+
+Why are natural cubic splines typically preferred over global polynomials of degree d?
+---> Polynomials tend to extrapolate very badly
+Polynomials can oscillate wildly once they get outside the boundaries of the data set. 
+Natural splines, on the other hand, always extrapolate linearly.
+
+
+Let 1{x ≤ t} denote a function which is 1 if x ≤ t and 0 otherwise.
+Which of the following is a basis for linear splines with a knot at t? Select all that apply:
+---> 1, x, (x − t)1{x > t} 
+---> 1, x, (x − t)1{x ≤ t} 
+---  1{x > t}, 1{x ≤ t}, (x − t)1{x > t} 
+---> 1, (x − t)1{x ≤ t}, (x − t)1{x > t}
+Every function in the basis must be continuous at t, 
+and we must be able to represent any piecewise linear function with a single knot at t as a linear combination of the functions in the basis.
+
+##########################################################################################
+
+7.3 Smoothing Splines
+
+In terms of model complexity, which is more similar to a smoothing spline with 100 knots and 5 effective degrees of freedom?
+---> A natural cubic spline with 5 knots
+Even though the smoothing spline has 100 knots, it is penalized to be smooth, so it is about as complex as a model with 5 variables. 
+The natural cubic spline has 5 degrees of freedom is such a model.
+
+##########################################################################################
+
+7.4 Generalized Additive Models and Local Regression
+
+In the GAM, y ∼ f_1(X_1) + f_2(X_2) + e, as we make f_1 and f_2 more and more complex we can approximate any regression function to arbitrary precision.
+---> False
+If there is an interaction between X_1 and X_2, a purely additive model can never capture it.
+
+##########################################################################################
+
+7.R Nonlinear Functions in R
+
+Load the data from the file 7.R.RData, and plot it using plot(x,y). 
+What is the slope coefficient in a linear regression of y on x (to within 10%)?
+---> -0.6748
+The slope is negative for most of the data, and the coefficient reflects that.
+
+For the model y ~ 1 + x + x^2, what is the coefficient of x (to within 10%)?
+---> 77.7
+Despite the fact that the overall slope is slightly negative, the linear term is very positive.
+Because the values of x are far from zero, a large linear term is needed to offset the quadratic term;
+Otherwise the slope would be very negative in the range of the data.
+This is why we usually do not interpret the lower-order terms in a polynomial regression.
+
+##########################################################################################
+
+Chapter 7 Quiz
+
+Suppose we want to fit a generalized additive model (with a continuous response) for y against X_1 and X_2.
+Suppose that we are using a cubic spline with four knots for each variable (so our model can be expressed as a linear regression after the right basis expansion)
+Suppose that we fit our model by the following three steps:
+1) First fit our cubic spline model for y against X_1, obtaining the fit hatf_1(x) and residuals r_i = y_ i − hatf_1(X_i,_1)
+2) Then, fit a cubic spline model for r against X_2 to obtain hatf_2(x).
+3) Finally construct fitted values haty_i = hatf1(X_i, _1) + hatf_2(X_i,_2).
+Will we get the same fitted values as we would if we fit the additive model for y against X_1 and X_2 jointly?
+---> not necessarily, even if  X_1  and  X_2  are uncorrelated.
+If X_1 and X_2 are uncorrelated, and we are only fitting a linear regression (only linear terms for X_1 X_2 ) then this method would work.
+However, even if X_1 and X_2 are uncorrelated, the nonlinear basis functions might be.
+
+
+
