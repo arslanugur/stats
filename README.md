@@ -9,7 +9,7 @@ It is strongly advised that no one should just copy the solutions(voilation of e
 
 |  Chapter  |                Subject                |                                              Hands-on                                               | R Labs |                                                             Quiz                                         |
 | :---: | :-------------------------------------: | :------------------------------------------------------------------------------------------------: | :---: | :----------------------------------------------------------------------------------------------------------: |
-|   1   |         Introduction          |           [pdf](/01.Introduction.pdf)               |   [Surprise]https://github.com/arslanugur  |                     [Quiz](/01.Introduction.txt)                                |
+|   1   |         Introduction          |           [pdf](/01.Introduction.pdf)               |   [*](/arslanugur)  |                     [Quiz](/01.Introduction.txt)                                |
 |   2   |              Statistical Learning              |             [pdf](/02.StatisticalLearning.pdf)               |  [R Labs](/02.StatisticalLearning.R)   |       [Quiz](/02.StatisticalLearning.txt)                             |
 |   3   |                Linear Regression                |               [pdf](/03.LinearRegression.pdf)                 |  [R Labs](/03.LinearRegression.R)   |                     [Quiz](/03.LinearRegression.txt)                             |
 |   4   |           Classification           |              [pdf](/04.Classification.pdf)                |  [R Labs](/04.Classification.R)   |                                 [Quiz](/04.Classification.txt)                          |
