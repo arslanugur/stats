@@ -1,7 +1,7 @@
 # Statistical-Learning-by-Stanford
 
 |  Chapter  |                Subject                |                                              Hands-on                                               | R Labs |                                                             Quiz                                         |
-| :---: | :-------------------------------------: | :------------------------------------------------------------------------------------------------: | :--------: | :---: | :----------------------------------------------------------------------------------------------------------: |
+| :---: | :-------------------------------------: | :------------------------------------------------------------------------------------------------: | :---: | :----------------------------------------------------------------------------------------------------------: |
 |   1   |         Introduction          |           [pdf](/01.Introduction.pdf)               |     |                     [Quiz](/01.Introduction.txt)                                |
 |   2   |              Weighted Mean              |             [pdf](https://www.hackerrank.com/challenges/s10-weighted-mean/problem)               |  [R Labs](/10%20Days%20Of%20Stats/Day0-WeightedMean.py)   |       [Quiz](/01.Introduction.txt)                             |
 |   3   |                Quartiles                |               [pdf](https://www.hackerrank.com/challenges/s10-quartiles/problem)                 |  [R Labs](/10%20Days%20Of%20Stats/Day1-InterquartileRange.py)   |                                                |
