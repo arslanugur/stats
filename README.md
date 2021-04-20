@@ -2,7 +2,9 @@ Statistical Learning by Stanford University
 
 This repository contains all the solutions and quizzes for the course "Statistical Learning" by Stanford University on edX.
 
-Note: The material provided in this repository is only for helping those who may get stuck at any point of time in the course. It is strongly advised that no one should just copy the solutions(voilation of edX Honor Code) presented here.
+Note: The material provided in this repository is only for helping those who may get stuck at any point of time in the course.
+
+It is strongly advised that no one should just copy the solutions(voilation of edX Honor Code) presented here.
 
 
 |  Chapter  |                Subject                |                                              Hands-on                                               | R Labs |                                                             Quiz                                         |
