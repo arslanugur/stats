@@ -51,3 +51,4 @@ dev.off()
 pairs(Auto,col="brown")
 pairs(mpg~cylinders+acceleration+weight,Auto)
 q()
+
