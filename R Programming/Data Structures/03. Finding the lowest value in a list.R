@@ -1,0 +1,15 @@
+#This code uses a dataset file with population estimates by the US Census Bureau
+population$POPESTIMATE2009
+min(population$POPESTIMATE2009)
+
+# Output:
+[1] 307006550  55283679  66836911 113317879  71568081   4708708    698473
+[8]   6595778   2889450  36961664   5024748   3518288    885122    599657
+[...]
+[50]   2784572    621760   7882590   6664195   1819777   5654774    544270
+[57]   3967288
+
+[1] 544270
+
+
+
