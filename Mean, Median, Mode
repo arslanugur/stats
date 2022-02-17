@@ -1,0 +1,66 @@
+# Mean, Median, Mode are some of the measures of central tendency
+# These are three different properties of data sets that can give us useful, easy to understand information about a data set
+
+# Mean
+    The Mean is basically the summation of all the values in the set of data after it is divided by the total number of values in the set of the data
+    -Ortalama
+    If we have set of values = 2, 2, 3, 4, 5
+    Then;
+    Mean = sum of the values / total number of values
+       x̄ = (2+2+3+4+5) / 5 = 3.2
+       
+# Median
+    As the name suggests, the median is nothing but the middle - or "mid" - of all the values presented in the data set.
+    -Ortanca
+    If we have set of values = 2, 2, 3, 4, 5
+    Then;
+    Median = mid value of the set
+    Median = 3
+           
+# Mode
+    It is defined as the value that is found mostly in a data set.
+    When the frequencies in the data keep repeating, the mode takes place.
+    -Tepe değer
+    If we have set of values = 2, 2, 3, 4 , 5
+    Then;
+    Mode = repeated term in the set
+    Mode = 2
+
+
+# Question:
+      How to find the median of a set of even numbers?
+          For an even set of numbers
+          Median = ((n/2)th observation + (n/2+1)th observation) / 2
+    
+      Let's find the Mean, Median, Mode of the following table.
+      
+            x         f                   Here, x is an element of the set 
+            ------------                       f(x) is the frequency
+            1         5
+            20        9                   Let's take x=1, then f(1)=5
+            25        8                    
+            30        1                   Σf = n = 40
+            40        10
+            50        7
+            
+            The above table can also be written as,
+                1, 1, 1, 1, 1,
+                20, 20, 20, 20, 20, 20, 20, 20, 20,
+                25, 25, 25, 25, 25, 25, 25, 25,
+                30,
+                40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 
+                50, 50, 50, 50, 50, 50, 50
+                
+             Mean:
+                  (1*5)+(20*9)+(25*8)+(30*1)+(40*10)+(50*7) = 1165
+                                                              1165 / 40 = 29.125
+             
+             Median:
+                   25+25 / 2 = 25
+                   (here, n/2 = 25 & n/2 + 1 = 25)
+
+             Mode:
+                    The number 40 occurs more often. That is 10 times. Hence the mode is 40
+
+
+
